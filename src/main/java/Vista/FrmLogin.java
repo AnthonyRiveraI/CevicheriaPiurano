@@ -22,7 +22,7 @@ public class FrmLogin extends javax.swing.JFrame {
     public FrmLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
-        txtCorreo.setText("info@angelsifuentes.com");
+        txtCorreo.setText("marko123@gmail.com");
         txtPass.setText("admin");
         barra.setVisible(false);
         ImageIcon img = new ImageIcon(getClass().getResource("/Img/logo.png"));
