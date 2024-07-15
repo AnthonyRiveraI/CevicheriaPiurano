@@ -152,7 +152,14 @@ public final class Sistema extends javax.swing.JFrame {
             MimeMultipart mElementosCorreo = new MimeMultipart();
             // Contenido del correo
             MimeBodyPart mContenido = new MimeBodyPart();
-            mContenido.setContent(content, "text/html; charset=utf-8");
+            String mensajePersonalizado = "<html><body>"
+                    + "<h2>Estimado cliente,</h2>"
+                    + "<p>Adjunto a este correo encontrará su boleta de venta.</p>"
+                    + "<p>Agradecemos su preferencia y confianza en nuestros servicios.</p>"
+                    + "<p>Si tiene alguna pregunta o inquietud sobre su boleta, no dude en contactarnos.</p>"
+                    + "<p>Atentamente,<br>El equipo de Cevicheria El Rico Piura</p>"
+                    + "</body></html>";
+            mContenido.setContent(mensajePersonalizado, "text/html; charset=utf-8");
             mElementosCorreo.addBodyPart(mContenido);
 
             //Agregar archivos adjuntos
@@ -205,7 +212,7 @@ public final class Sistema extends javax.swing.JFrame {
 
         String personalMessage = "<html>";
         personalMessage += "<body>";
-        personalMessage += "<h1>Estimado/a, " +txtSopNombre.getText() +"</h1>";
+        personalMessage += "<h1>Estimado/a, " + txtSopNombre.getText() + "</h1>";
         personalMessage += "<p>Nos complace informarle que su caso ha sido resuelto.</p>";
         personalMessage += "<p><strong>Mensaje del personal:</strong><br>";
         personalMessage += "<span style='font-size: 14px;'>" + txtSopRespuesta.getText().trim() + "</span></p>";
@@ -564,8 +571,8 @@ public final class Sistema extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
-                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 173, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap()
+                .addComponent(labelLogo, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(13, 13, 13)
                 .addComponent(tipo)
                 .addGap(18, 18, 18)
@@ -599,10 +606,10 @@ public final class Sistema extends javax.swing.JFrame {
         );
         jPanel14Layout.setVerticalGroup(
             jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 150, Short.MAX_VALUE)
+            .addGap(0, 120, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1080, 150));
+        getContentPane().add(jPanel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 1080, 120));
 
         jTabbedPane1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1692,11 +1699,10 @@ public final class Sistema extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(txtSopNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                    .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtSopCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
-                        .addComponent(txtSopMensaje)
-                        .addComponent(txtSopFecha)
-                        .addComponent(txtSopEstado)))
+                    .addComponent(txtSopCorreo, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                    .addComponent(txtSopMensaje)
+                    .addComponent(txtSopFecha)
+                    .addComponent(txtSopEstado))
                 .addGap(133, 133, 133)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 306, Short.MAX_VALUE)
@@ -2119,7 +2125,7 @@ public final class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_tableSoporteMouseClicked
 
     private void btnSopFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSopFinalizarActionPerformed
-        
+
         int pregunta = JOptionPane.showConfirmDialog(null, "Esta seguro de finalizar");
         if (pregunta == 0) {
             if (sopDao.actualizarEstado((sop.getId()))) {
@@ -2130,7 +2136,7 @@ public final class Sistema extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSopFinalizarActionPerformed
 
     private void labelLogoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_labelLogoMouseClicked
-    jTabbedPane1.setSelectedIndex(0);
+        jTabbedPane1.setSelectedIndex(0);
         PanelSalas.removeAll();
         panelSalas();        // TODO add your handling code here:
     }//GEN-LAST:event_labelLogoMouseClicked
@@ -2475,9 +2481,9 @@ public final class Sistema extends javax.swing.JFrame {
             boton.setVerticalTextPosition(JButton.BOTTOM);
             int verificar = pedDao.verificarStado(num_mesa, id_sala);
             if (verificar > 0) {
-                boton.setBackground(new Color(72, 111, 252));
+                boton.setBackground(new Color(244, 67, 54));
             } else {
-                boton.setBackground(new Color(129, 255, 0));
+                boton.setBackground(new Color(76, 175, 80));
             }
             boton.setForeground(Color.WHITE);
             boton.setFocusable(false);
